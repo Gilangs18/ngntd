@@ -90,6 +90,7 @@ class main(requests.Session):
 	def run(self):
 		self.res = self.check_cookie()["user"]
 		self.fetch = dump(self.cookies)
+		print("\n    <[ https://github.com/mark-zugbreg ]>\n")
 		print(f" [*] name: {self.res['full_name']}")
 		print(f" [*] username: {self.res['username']}\n")
 		print(" [1] crack from followers")
