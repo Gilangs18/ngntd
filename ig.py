@@ -140,7 +140,7 @@ class main(requests.Session):
 		#while self.methods not in list("12"):
 			#self.methods = input(" [?] method: ")
 		print("\n [*] on/off modpes setiap 400 id\n [*] running...\n")
-		crack().start(set_password(self.result, ml=True if self.ask == "Y" else False), "ajax") # if self.methods == "2" else "M3M3K")
+		crack().start(set_password(self.result, ml=True if self.ask == "Y" else False), "M3M3K") # if self.methods == "2" else "M3M3K")
 		
 class dump(main):
 
